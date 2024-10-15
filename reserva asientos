@@ -1,0 +1,93 @@
+#include <iostream>
+#include <vector>
+#include <string>
+
+using namespace std; 
+struct tickets {
+    string nombreDelUsuario;
+    int numeroDeAsiento; 
+};
+ void mostrarTickets(const vector<tickets>&listaTickets) {
+ if (listaTickets.empty() ) {
+    cout << "no hay tickets reservados \n "; 
+    return;
+ }
+ cout << "\n los asientos reservados son: \n ";
+ for (int i = 0; i < listaTickets.size(); i++){
+    cout << i  + 1 << "_ asiento: "  << listaTickets[i].numeroDeAsiento  << " - usuario: " << listaTickets[i].nombreDelUsuario << endl;  
+
+ }  
+ return; 
+ }
+void reservarTickets(vector<tickets>&listaTickets) {
+int numeroDeAsiento;
+string nombreDeUsuario; 
+cout << "ingrese el numero de asiento a reservar: ";
+cin >> numeroDeAsiento;
+cin.ignore();
+cout << "ingrese su nombre de usuario: ";
+getline(cin, nombreDeUsuario);
+
+tickets nuevoTickets = {nombreDeUsuario, numeroDeAsiento};
+    listaTickets.push_back(nuevoTickets);
+    cout << "Ticket reservado\n";
+    return; 
+}
+void cancelarReserva(){
+
+    return; 
+}
+
+void mostrarMenu () {
+cout << "\n--reserva de asientos--\n";
+cout << "1- reservar asientos \n";
+cout << "2- mostrar asientos \n";
+cout << "3- cancelar una reserva ";
+
+
+    return; 
+}
+
+int main () {
+
+vector<tickets> listaTickets; 
+int opcion;
+
+do {
+ mostrarMenu();
+ cin >> opcion;
+ switch (opcion)
+ {
+ case 1:
+    reservarTickets(listaTickets);
+    break;
+ 
+    case 2: 
+    mostrarTickets(listaTickets);
+    break; 
+    
+    case 3:
+
+    break; 
+    
+ default:
+  cout << "opcion invalida\n";
+    break;
+ 
+ }
+ 
+
+
+} while(opcion != 3);
+
+    return 0; 
+}
+
+
+/* Implementa un sistema simple de reserva de tickets:
+
+Permitir reservar un ticket (nombre del usuario, número de asiento).
+Mostrar los asientos reservados.
+Cancelar una reserva.
+Limitar el número de asientos disponibles (por ejemplo, 20 asientos).
+*/
